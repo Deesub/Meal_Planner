@@ -81,7 +81,7 @@ public class MainActivity extends ActionBarActivity {
     private void selectItem(int position) {
         //Add code here if clicked on planner
         if (position == 0) {
-
+            //joj
             Toast.makeText(this, " clicked on planner ", Toast.LENGTH_SHORT).show();
             //Call the method, actions to take place when clicked on planner
         }
