@@ -9,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -26,13 +28,12 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        //setSupportActionBar(toolbar);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerTitles = getResources().getStringArray(R.array.drawer_items);
         mDrawerList = (ListView) findViewById(R.id.list_item);
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mDrawerTitles));
-        //  mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -77,15 +78,31 @@ public class MainActivity extends ActionBarActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    private void selectItem(int position) {
+        //Add code here if clicked on planner
+        if (position == 0) {
 
-//
-//   private class DrawerItemClickListener implements ListView.OnItemClickListener {
-//        @Override
-//        public void onItemClick(AdapterView parent, View view, int position, long id) {
-////            selectItem(position);
-//        }
-//    }
+            Toast.makeText(this, " clicked on planner ", Toast.LENGTH_SHORT).show();
+            //Call the method, actions to take place when clicked on planner
+        }
+        //add code if clicked on Recipes
+        else if (position == 1) {
+            Toast.makeText(this, "clicked on recipes", Toast.LENGTH_SHORT).show();
+            //Call the method, actions to take place when clicked on recipes
 
+        } else if (position == 2) {
+
+            Toast.makeText(this, "clicked on Grocery", Toast.LENGTH_SHORT).show();
+            //Call the method, actions to take place when clicked on grocery
+        } else if (position == 3)
+
+        {
+            Toast.makeText(this, "clicked on groups", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,5 +122,12 @@ public class MainActivity extends ActionBarActivity {
         // Handle your other action bar items...
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+        }
     }
 }
